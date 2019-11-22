@@ -1,0 +1,21 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        package="com.app.base">
+
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+
+    <!--8.0 安装权限-->
+    <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />
+
+    <application
+            android:allowBackup="true"
+            android:supportsRtl="true"
+            tools:overrideLibrary="com.luck.picture.lib">
+        <activity
+                android:name=".ui.activity.ActivityImageGallery"
+                android:screenOrientation="portrait" />
+    </application>
+
+</manifest>

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:background="@android:color/holo_blue_bright">
+
+    <FrameLayout
+        android:id="@+id/fl"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:duplicateParentState="true">
+
+        <ImageView
+            android:id="@+id/iv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <ImageView
+            android:id="@+id/iv_badge"
+            android:layout_width="8dp"
+            android:layout_height="8dp"
+            android:layout_gravity="right"
+            android:translationY="1dp"
+            android:src="@drawable/bg_circle_red"
+            android:visibility="gone"
+            tools:visibility="visible"
+            tools:ignore="RtlHardcoded" />
+    </FrameLayout>
+
+    <TextView
+        android:id="@+id/tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/fl"
+        android:layout_centerHorizontal="true"
+        android:duplicateParentState="true"
+        android:maxLines="1"
+        android:layout_marginBottom="6dp"
+        tools:text="Search" />
+
+    <TextView
+        android:id="@+id/tv_badge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignRight="@+id/tv"
+        android:layout_marginRight="-2dp"
+        android:background="@drawable/bg_unread_msg"
+        android:duplicateParentState="true"
+        android:gravity="center"
+        android:lines="1"
+        android:maxLines="1"
+        android:minWidth="16dp"
+        android:paddingLeft="4dp"
+        android:paddingRight="4dp"
+        android:textColor="@color/white"
+        android:textSize="10dp"
+        android:visibility="gone"
+        tools:text="23"
+        tools:visibility="gone" />
+</merge>

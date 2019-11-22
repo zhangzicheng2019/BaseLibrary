@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="tag_multi_state_view" type="id" />
+    <item name="banner_indicatorId" type="id" />
+    <item name="fl_content" type="id" />
+    <item name="tv_menu" type="id" />
+</resources>

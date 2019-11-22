@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="Toolbar">
+        <attr name="titleText" format="string" />
+        <attr name="navIcon" format="reference" />
+        <attr name="tintColor" format="color" />
+        <attr name="titleColor" format="color" />
+        <attr name="titleSize" format="dimension" />
+        <attr name="showLine" format="boolean" />
+        <attr name="showNavIcon" format="boolean" />
+    </declare-styleable>
+
+    <declare-styleable name="TabMenuItemView">
+        <attr name="tabMenuIcon" format="integer" />
+        <attr name="tabMenuText" format="string" />
+        <attr name="tabMenuTextColor" format="reference|color" />
+    </declare-styleable>
+
+    <declare-styleable name="MultiStateView">
+        <attr name="msvLoadingView" format="reference|integer" />
+        <attr name="msvEmptyView" format="reference|integer" />
+        <attr name="msvErrorView" format="reference|integer" />
+        <attr name="msvNoNetworkView" format="reference|integer" />
+        <attr name="msvViewState" format="enum">
+            <enum name="content" value="0" />
+            <enum name="error" value="1" />
+            <enum name="empty" value="2" />
+            <enum name="loading" value="3" />
+            <enum name="no_network" value="4" />
+        </attr>
+        <attr name="msvAnimateViewChanges" format="boolean" />
+    </declare-styleable>
+
+    <declare-styleable name="ClearEditText">
+        <attr name="clearMaxLength" format="integer" />
+        <attr name="clearAllowEmoticon" format="boolean" />
+        <attr name="clearDrawable" format="reference" />
+    </declare-styleable>
+
+    <!-- BannerView -->
+    <declare-styleable name="BannerView">
+        <!-- 指示点容器背景 -->
+        <attr name="banner_pointContainerBackground" format="reference|color" />
+        <!-- 指示点背景 -->
+        <attr name="banner_pointDrawable" format="reference" />
+        <!-- 指示点容器左右内间距 -->
+        <attr name="banner_pointContainerLeftRightPadding" format="dimension" />
+        <!-- 指示点上下外间距 -->
+        <attr name="banner_pointTopBottomMargin" format="dimension" />
+        <!-- 指示点左右外间距 -->
+        <attr name="banner_pointLeftRightMargin" format="dimension" />
+        <!-- 指示器的位置 -->
+        <attr name="banner_indicatorGravity">
+            <flag name="top" value="0x30" />
+            <flag name="bottom" value="0x50" />
+            <flag name="left" value="0x03" />
+            <flag name="right" value="0x05" />
+            <flag name="center_horizontal" value="0x01" />
+        </attr>
+        <!-- 是否开启自动轮播 -->
+        <attr name="banner_pointAutoPlayAble" format="boolean" />
+        <!-- 自动轮播的时间间隔 -->
+        <attr name="banner_pointAutoPlayInterval" format="integer" />
+        <!-- 页码切换过程的时间长度 -->
+        <attr name="banner_pageChangeDuration" format="integer" />
+        <!-- 页面切换的动画效果 -->
+        <attr name="banner_transitionEffect" format="enum">
+            <enum name="defaultEffect" value="0" />
+            <enum name="alpha" value="1" />
+            <enum name="rotate" value="2" />
+            <enum name="cube" value="3" />
+            <enum name="flip" value="4" />
+            <enum name="accordion" value="5" />
+            <enum name="zoomFade" value="6" />
+            <enum name="fade" value="7" />
+        </attr>
+        <!-- 提示文案的文字颜色 -->
+        <attr name="banner_titleTextColor" format="reference|color" />
+        <!-- 提示文案的文字大小 -->
+        <attr name="banner_titleTextSize" format="dimension" />
+        <!-- 是否显示提示文案 -->
+        <attr name="banner_showTitleText" format="boolean" />
+        <!-- 是否显示指示器 -->
+        <attr name="banner_showIndicator" format="boolean" />
+        <!-- 加载网络数据时覆盖在 BannerView 最上层的占位图 -->
+        <attr name="banner_placeholderDrawable" format="reference" />
+        <!-- 是否是数字指示器 -->
+        <attr name="banner_isNumberIndicator" format="boolean" />
+        <!-- 数字指示器文字颜色 -->
+        <attr name="banner_numberIndicatorTextColor" format="reference|color" />
+        <!-- 数字指示器文字大小 -->
+        <attr name="banner_numberIndicatorTextSize" format="dimension" />
+        <!-- 数字指示器背景 -->
+        <attr name="banner_numberIndicatorBackground" format="reference" />
+        <!-- 当只有一页数据时是否显示指示器，默认值为 false -->
+        <attr name="banner_isNeedShowIndicatorOnOnlyOnePage" format="boolean" />
+        <!-- 自动轮播区域距离 BannerView 底部的距离 -->
+        <attr name="banner_contentBottomMargin" format="dimension" />
+    </declare-styleable>
+
+    <declare-styleable name="TagFlowLayout">
+        <attr name="maxSelect" format="integer" />
+    </declare-styleable>
+
+    <declare-styleable name="RatioLayout">
+        <attr name="ratioWidth" format="float" />
+        <attr name="ratioHeight" format="float" />
+    </declare-styleable>
+
+    <declare-styleable name="SubSamplingScaleImageView">
+        <attr name="src" format="reference"/>
+        <attr name="assetName" format="string"/>
+        <attr name="panEnabled" format="boolean"/>
+        <attr name="zoomEnabled" format="boolean"/>
+        <attr name="quickScaleEnabled" format="boolean"/>
+        <attr name="tileBackgroundColor" format="color"/>
+    </declare-styleable>
+
+    <!-- AuthCodeInputView -->
+    <declare-styleable name="AuthCodeInputView">
+        <attr name="boxCount" format="integer" />
+        <attr name="boxSpace" format="dimension" />
+        <attr name="boxHeight" format="dimension" />
+        <attr name="boxWidth" format="dimension" />
+        <attr name="boxColor" format="color" />
+        <attr name="dotRadius" format="dimension" />
+        <attr name="dotColor" format="color" />
+        <attr name="textColor" format="color" />
+        <attr name="textSize" format="dimension" />
+        <attr name="cursorColor" format="color" />
+    </declare-styleable>
+
+    <declare-styleable name="TabMenuLayout">
+
+        <attr name="space" format="dimension" />
+        <attr name="menuWidth" format="dimension" >
+            <enum name="match_parent" value="-1" />
+            <!-- The view should be only big enough to enclose its content (plus padding). -->
+            <enum name="wrap_content" value="-2" />
+        </attr>
+        <attr name="menuHeight" format="dimension" >
+
+            <enum name="match_parent" value="-1" />
+            <!-- The view should be only big enough to enclose its content (plus padding). -->
+            <enum name="wrap_content" value="-2" />
+
+        </attr>
+        <attr name="menuId" format="reference|integer" />
+        <attr name="model" format="integer" >
+
+            <enum name="fixed" value="1" />
+            <enum name="scroll" value="2" />
+
+        </attr>
+
+    </declare-styleable>
+
+</resources>
