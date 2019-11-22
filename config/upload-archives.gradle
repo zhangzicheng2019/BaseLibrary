@@ -1,0 +1,13 @@
+apply plugin: 'maven'
+uploadArchives{
+    repositories.mavenDeployer{
+        // 本地仓库路径
+        repository(url:"file://E://repository/")
+        // 唯一标识
+        pom.groupId = "com.zzc.base"
+        // 项目名称
+        pom.artifactId = "app-android"
+        // 版本号
+        pom.version = "1.0.0"
+    }
+}
