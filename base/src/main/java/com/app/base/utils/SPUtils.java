@@ -22,6 +22,7 @@ public class SPUtils {
     }
 
     public static void put(String key, @NonNull Object object) {
+        checkInit();
         SharedPreferences.Editor editor = sPreferences.edit();
         if (object instanceof String) {
             editor.putString(key, (String) object);
@@ -38,27 +39,39 @@ public class SPUtils {
     }
 
     public static String getString(String key, String defaultValue) {
+        checkInit();
         return sPreferences.getString(key, defaultValue);
     }
 
     public static boolean getBoolean(String key, boolean defaultValue) {
+        checkInit();
         return sPreferences.getBoolean(key, defaultValue);
     }
 
     public static int getInt(String key, int defaultValue) {
+        checkInit();
         return sPreferences.getInt(key, defaultValue);
     }
 
     public static long getLong(String key, long defaultValue) {
+        checkInit();
         return sPreferences.getLong(key, defaultValue);
     }
 
     public static void remove(String key) {
+        checkInit();
         sPreferences.edit().remove(key).apply();
     }
 
     public static boolean contains(String key) {
+        checkInit();
         return sPreferences.contains(key);
+    }
+
+    private static void checkInit(){
+        if(sPreferences == null){
+            throw new  RuntimeException("SPUtils is not initialized !");
+        }
     }
 
 }
