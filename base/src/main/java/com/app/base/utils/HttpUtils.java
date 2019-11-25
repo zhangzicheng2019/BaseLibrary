@@ -38,7 +38,7 @@ public class HttpUtils {
         clientBuilder.connectTimeout(15, TimeUnit.SECONDS);
         clientBuilder.readTimeout(30, TimeUnit.SECONDS);
         clientBuilder.writeTimeout(30, TimeUnit.SECONDS);
-        if (BuildConfig.DEBUG) {
+        if (LogUtils.isDebug) {
             HttpLoggingInterceptor httpLoggingInterceptor = new HttpLoggingInterceptor();
             httpLoggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
             clientBuilder.addInterceptor(httpLoggingInterceptor);

@@ -1,13 +1,16 @@
 package com.app.base.utils;
 
 import android.util.Log;
-import com.app.base.BuildConfig;
 
 public class LogUtils {
 
-    private static boolean isDebug = BuildConfig.DEBUG;
+    static boolean isDebug = false;
 
     private static final String TAG = LogUtils.class.getSimpleName();
+
+    public static void setDebug(boolean debug){
+        isDebug = debug;
+    }
 
     public static void i(String message){
         if(isDebug){
