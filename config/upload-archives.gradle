@@ -4,10 +4,10 @@ uploadArchives{
         // 本地仓库路径
         repository(url:"file://E://repository/")
         // 唯一标识
-        pom.groupId = "com.zzc.base"
+        pom.groupId = "${project.POM_GRAOUP_ID}"
         // 项目名称
-        pom.artifactId = "app-android"
+        pom.artifactId = "${project.POM_ARTIFACT_ID}"
         // 版本号
-        pom.version = "1.0.0"
+        pom.version = "${project.POM_VERSION}"
     }
 }
