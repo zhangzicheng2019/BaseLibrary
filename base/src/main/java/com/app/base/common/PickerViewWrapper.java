@@ -5,7 +5,9 @@ import android.content.res.AssetManager;
 import android.graphics.Color;
 import android.text.TextUtils;
 import android.view.View;
+
 import androidx.core.content.ContextCompat;
+
 import com.app.base.R;
 import com.bigkoo.pickerview.builder.OptionsPickerBuilder;
 import com.bigkoo.pickerview.builder.TimePickerBuilder;
@@ -13,6 +15,7 @@ import com.bigkoo.pickerview.listener.OnOptionsSelectListener;
 import com.bigkoo.pickerview.listener.OnTimeSelectListener;
 import com.bigkoo.pickerview.view.OptionsPickerView;
 import com.bigkoo.pickerview.view.TimePickerView;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -26,39 +29,51 @@ public class PickerViewWrapper {
 
     private OptionsPickerView<String> cityOpv;
     private OptionsPickerView<String> sexOpv;
-    private TimePickerView timePv;
+    private OptionsPickerView<String> durationOpv;
+    private TimePickerView datePv;
 
-    public void showDateSelectDialog(Context ctx, OnDateSelectListener onDateSelectListener){
+    public void showDateSelectDialog(Context ctx, OnDateSelectListener onDateSelectListener) {
 
-        if(timePv == null){
-            initTimePv(ctx, onDateSelectListener);
+        if (datePv == null) {
+            initDatePv(ctx, onDateSelectListener);
         }
-        if(timePv.isShowing()){
-            timePv.dismiss();
+        if (datePv.isShowing()) {
+            datePv.dismiss();
         }
-        timePv.show(false);
+        datePv.show(false);
     }
 
-    public void showCitySelectDialog(Context ctx, OnCitySelectListener onCitySelectListener){
-        if(mProvinceList.size() == 0){
-            String jsonData = getJson(ctx,"province.json");
+    public void showDurationSelectDialog(Context ctx, OnDurationSelectListener onDurationSelectListener) {
+        if (durationOpv == null) {
+            initDurationPv(ctx, onDurationSelectListener);
+        }
+        if (durationOpv.isShowing()) {
+            durationOpv.dismiss();
+        }
+        durationOpv.show(false);
+    }
+
+
+    public void showCitySelectDialog(Context ctx, OnCitySelectListener onCitySelectListener) {
+        if (mProvinceList.size() == 0) {
+            String jsonData = getJson(ctx, "province.json");
             parseJson(jsonData);
         }
 
-        if(cityOpv == null){
+        if (cityOpv == null) {
             initCityOpv(ctx, onCitySelectListener);
         }
-        if(cityOpv.isShowing()){
+        if (cityOpv.isShowing()) {
             cityOpv.dismiss();
         }
         cityOpv.show(false);
     }
 
-    public void showSexSelectDialog(Context ctx,  OnIndexSelectListener onIndexSelectListener){
-        if(sexOpv == null){
+    public void showSexSelectDialog(Context ctx, OnIndexSelectListener onIndexSelectListener) {
+        if (sexOpv == null) {
             initSexOpv(ctx, onIndexSelectListener);
         }
-        if(sexOpv.isShowing()){
+        if (sexOpv.isShowing()) {
             sexOpv.dismiss();
         }
         sexOpv.show(false);
@@ -74,15 +89,15 @@ public class PickerViewWrapper {
     private ArrayList<List<String>> mDistricts;
     private ArrayList<List<List<String>>> mDistrictList = new ArrayList<>();
 
-    private void initCityOpv(Context ctx, final OnCitySelectListener onCitySelectListener){
+    private void initCityOpv(Context ctx, final OnCitySelectListener onCitySelectListener) {
         cityOpv = new OptionsPickerBuilder(ctx, new OnOptionsSelectListener() {
             @Override
             public void onOptionsSelect(int options1, int options2, int options3, View v) {
                 String province = mProvinceList.get(options1);
                 String city = mCityList.get(options1).get(options2);
-                if(!TextUtils.isEmpty(city)){
+                if (!TextUtils.isEmpty(city)) {
                     String district = mDistrictList.get(options1).get(options2).get(options3);
-                    if(!TextUtils.isEmpty(district)){
+                    if (!TextUtils.isEmpty(district)) {
                         onCitySelectListener.onCitySelect(district, v);
                     } else {
                         onCitySelectListener.onCitySelect(city, v);
@@ -112,12 +127,12 @@ public class PickerViewWrapper {
         cityOpv.setPicker(mProvinceList, mCityList, mDistrictList);//添加数据源
     }
 
-    private void initTimePv(Context ctx, final OnDateSelectListener onDateSelectListener) {
+    private void initDatePv(Context ctx, final OnDateSelectListener onDateSelectListener) {
         Calendar selectedDate = Calendar.getInstance();
         Calendar startDate = Calendar.getInstance();
-        startDate.set(1900,0,1);
+        startDate.set(1900, 0, 1);
         Calendar endDate = Calendar.getInstance();
-        timePv = new TimePickerBuilder(ctx, new OnTimeSelectListener() {
+        datePv = new TimePickerBuilder(ctx, new OnTimeSelectListener() {
             @Override
             public void onTimeSelect(Date date, View v) {//选中事件回调
                 onDateSelectListener.onDateSelect(date, v);
@@ -138,14 +153,53 @@ public class PickerViewWrapper {
                 .setTitleBgColor(ContextCompat.getColor(ctx, R.color.gray_background))//标题背景颜色 Night mode
                 .setBgColor(Color.WHITE)//滚轮背景颜色 Night mode
                 .setDate(selectedDate)// 如果不设置的话，默认是系统时间*/
-                .setRangDate(startDate,endDate)//起始终止年月日设定
+                .setRangDate(startDate, endDate)//起始终止年月日设定
 //                .setLabel("年","月","日","时","分","秒")//默认设置为年月日时分秒
                 .isCenterLabel(false) //是否只显示中间选中项的label文字，false则每项item全部都带有label。
                 .isDialog(true)//是否显示为对话框样式
                 .build();
     }
 
-    private void initSexOpv(Context ctx, final OnIndexSelectListener onIndexSelectListener){
+    private void initDurationPv(Context ctx, final OnDurationSelectListener onDurationSelectListener) {
+        List<String> hourList = new ArrayList<>();
+        List<String> minuteList = new ArrayList<>();
+        List<String> secondList = new ArrayList<>();
+        for (int i = 0; i < 61; i++) {
+            if (i <= 12) {
+                hourList.add(i + "");
+            }
+            minuteList.add(i + "");
+            secondList.add(i + "");
+        }
+
+        durationOpv = new OptionsPickerBuilder(ctx, new OnOptionsSelectListener() {
+            @Override
+            public void onOptionsSelect(int options1, int options2, int options3, View v) {
+                onDurationSelectListener.onDurationSelect(options1, options2, options3);
+            }
+        }).setSubmitText("确定")//确定按钮文字
+                .setCancelText("取消")//取消按钮文字
+                .setTitleText("选择时长")//标题
+                .setSubCalSize(18)//确定和取消文字大小
+                .setTitleSize(20)//标题文字大小
+                .setContentTextSize(20)//滚轮文字大小
+                .setTitleColor(Color.BLACK)//标题文字颜色
+                .setSubmitColor(Color.parseColor("#357af6"))//确定按钮文字颜色
+                .setCancelColor(Color.parseColor("#357af6"))//取消按钮文字颜色
+                .setTitleBgColor(ContextCompat.getColor(ctx, R.color.gray_background))//标题背景颜色 Night mode
+                .setBgColor(Color.WHITE)//滚轮背景颜色 Night mode
+                .isCenterLabel(false) //是否只显示中间选中项的label文字，false则每项item全部都带有label。
+                .setCyclic(true, true, true)//循环与否
+                .setSelectOptions(0, 0, 0)  //设置默认选中项
+                .setOutSideCancelable(true)//点击外部dismiss default true
+                .setLabels("小时", "分钟", "秒")
+                .isDialog(true)//是否显示为对话框样式
+                .isRestoreItem(true)//切换时是否还原，设置默认选中第一项。
+                .build();
+        durationOpv.setNPicker(hourList, minuteList, secondList);//添加数据源
+    }
+
+    private void initSexOpv(Context ctx, final OnIndexSelectListener onIndexSelectListener) {
 
         sexOpv = new OptionsPickerBuilder(ctx, new OnOptionsSelectListener() {
             @Override
@@ -248,50 +302,62 @@ public class PickerViewWrapper {
 
     }
 
-    public void release(){
-        if(cityOpv != null){
-            if(cityOpv.isShowing()){
+    public void release() {
+        if (cityOpv != null) {
+            if (cityOpv.isShowing()) {
                 cityOpv.dismiss();
             }
             cityOpv = null;
         }
-        if(timePv != null){
-            if(timePv.isShowing()){
-                timePv.dismiss();
+        if (durationOpv != null) {
+            if (durationOpv.isShowing()) {
+                durationOpv.dismiss();
             }
-            timePv = null;
+            durationOpv = null;
+        }
+        if (datePv != null) {
+            if (datePv.isShowing()) {
+                datePv.dismiss();
+            }
+            datePv = null;
         }
         mProvinceList.clear();
         mCityList.clear();
         mDistrictList.clear();
-        if(mCities != null){
+        if (mCities != null) {
             mCities.clear();
         }
 
-        if(mDistrict != null){
+        if (mDistrict != null) {
             mDistrict.clear();
         }
 
-        if(mDistricts != null){
+        if (mDistricts != null) {
             mDistricts.clear();
         }
     }
 
-    public interface OnDateSelectListener{
+    public interface OnDateSelectListener {
 
         void onDateSelect(Date date, View v);
 
     }
 
-    public interface OnCitySelectListener{
+    public interface OnCitySelectListener {
 
         void onCitySelect(String region, View v);
 
     }
 
-    public interface OnIndexSelectListener{
+    public interface OnIndexSelectListener {
 
         void onIndexSelect(int index, View v);
+
+    }
+
+    public interface OnDurationSelectListener {
+
+        void onDurationSelect(int hour, int minute, int second);
 
     }
 
