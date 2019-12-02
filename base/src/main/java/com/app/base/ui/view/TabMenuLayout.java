@@ -23,6 +23,7 @@ public class TabMenuLayout extends LinearLayout {
     private static final int TAB_MENU_WIDTH_MODEL_SCROLL = 2;
 
     private OnSelectMenuListener mOnSelectMenuListener;
+    private OnCreateMenuListener mOnCreateMenuListener;
 
     private int mSpace;
     private int mMenuId;
@@ -84,6 +85,10 @@ public class TabMenuLayout extends LinearLayout {
         this.mOnSelectMenuListener = onSelectMenuListener;
     }
 
+    public void setOnCreateMenuListener(OnCreateMenuListener onCreateMenuListener){
+        this.mOnCreateMenuListener = onCreateMenuListener;
+    }
+
     public void setMenuEnabled(List<Boolean> enabledList){
         int childCount;
         if(mTabMenuModel == TAB_MENU_WIDTH_MODEL_SCROLL){
@@ -116,6 +121,9 @@ public class TabMenuLayout extends LinearLayout {
         }
         for (int i = 0; i < menuText.size(); i++) {
             final View menu = LayoutInflater.from(getContext()).inflate(mMenuId, this, false);
+            if(mOnCreateMenuListener != null){
+                mOnCreateMenuListener.onCreateMenu(menu, i);
+            }
             final int index = i;
             menu.setOnClickListener(new OnClickListener() {
                 @Override
@@ -184,6 +192,12 @@ public class TabMenuLayout extends LinearLayout {
     public interface OnSelectMenuListener{
 
         void onSelectMenu(View menu, int index);
+
+    }
+
+    public interface OnCreateMenuListener{
+
+        void onCreateMenu(View menu, int index);
 
     }
 }
