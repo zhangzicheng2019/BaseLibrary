@@ -8,6 +8,7 @@ import android.graphics.drawable.Drawable;
 
 import androidx.appcompat.widget.AppCompatEditText;
 import androidx.core.content.ContextCompat;
+
 import android.text.Editable;
 import android.text.InputFilter;
 import android.text.Spanned;
@@ -177,6 +178,24 @@ public class ClearEditText extends AppCompatEditText implements TextWatcher {
                 }
             }
             return null;
+        }
+    }
+
+    public static class SimpleTextChangedListener implements TextWatcher {
+
+        @Override
+        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+        }
+
+        @Override
+        public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+        }
+
+        @Override
+        public void afterTextChanged(Editable s) {
+
         }
     }
 }
