@@ -54,7 +54,7 @@ public class CountDownButton extends AppCompatButton {
             @Override
             public void onFinish() {
                 setClickable(true);
-                setText(mGetCodeText);
+                setText(R.string.text_reacquire);
 
             }
         }.start();

@@ -106,9 +106,9 @@ public class PickerViewWrapper {
                     onCitySelectListener.onCitySelect(province, v);
                 }
             }
-        }).setSubmitText("确定")//确定按钮文字
-                .setCancelText("取消")//取消按钮文字
-                .setTitleText("选择地区")//标题
+        }).setSubmitText(ctx.getString(R.string.text_confirm))//确定按钮文字
+                .setCancelText(ctx.getString(R.string.text_cancel))//取消按钮文字
+                .setTitleText(ctx.getString(R.string.text_select_region))//标题
                 .setSubCalSize(18)//确定和取消文字大小
                 .setTitleSize(20)//标题文字大小
                 .setContentTextSize(20)//滚轮文字大小
@@ -139,9 +139,9 @@ public class PickerViewWrapper {
             }
         })
                 .setType(new boolean[]{true, true, true, false, false, false})// 默认全部显示
-                .setTitleText("选择日期")//标题文字
-                .setCancelText("取消")//取消按钮文字
-                .setSubmitText("确定")//确认按钮文字
+                .setTitleText(ctx.getString(R.string.text_select_date))//标题文字
+                .setCancelText(ctx.getString(R.string.text_cancel))//取消按钮文字
+                .setSubmitText(ctx.getString(R.string.text_confirm))//确认按钮文字
                 .setSubCalSize(18)//确定和取消文字大小
                 .setTitleSize(20)//标题文字大小
                 .setContentTextSize(20)//滚轮文字大小
@@ -177,9 +177,9 @@ public class PickerViewWrapper {
             public void onOptionsSelect(int options1, int options2, int options3, View v) {
                 onDurationSelectListener.onDurationSelect(options1, options2, options3);
             }
-        }).setSubmitText("确定")//确定按钮文字
-                .setCancelText("取消")//取消按钮文字
-                .setTitleText("选择时长")//标题
+        }).setSubmitText(ctx.getString(R.string.text_confirm))//确定按钮文字
+                .setCancelText(ctx.getString(R.string.text_cancel))//取消按钮文字
+                .setTitleText(ctx.getString(R.string.text_select_duration))//标题
                 .setSubCalSize(18)//确定和取消文字大小
                 .setTitleSize(20)//标题文字大小
                 .setContentTextSize(20)//滚轮文字大小
@@ -192,7 +192,7 @@ public class PickerViewWrapper {
                 .setCyclic(true, true, true)//循环与否
                 .setSelectOptions(0, 0, 0)  //设置默认选中项
                 .setOutSideCancelable(true)//点击外部dismiss default true
-                .setLabels("小时", "分钟", "秒")
+                .setLabels(ctx.getString(R.string.text_hour), ctx.getString(R.string.text_minute), ctx.getString(R.string.text_second))
                 .isDialog(true)//是否显示为对话框样式
                 .isRestoreItem(true)//切换时是否还原，设置默认选中第一项。
                 .build();
@@ -206,9 +206,9 @@ public class PickerViewWrapper {
             public void onOptionsSelect(int options1, int options2, int options3, View v) {
                 onIndexSelectListener.onIndexSelect(options1, v);
             }
-        }).setSubmitText("确定")//确定按钮文字
-                .setCancelText("取消")//取消按钮文字
-                .setTitleText("选择性别")//标题
+        }).setSubmitText(ctx.getString(R.string.text_confirm))//确定按钮文字
+                .setCancelText(ctx.getString(R.string.text_cancel))//取消按钮文字
+                .setTitleText(ctx.getString(R.string.text_select_gender))//标题
                 .setSubCalSize(18)//确定和取消文字大小
                 .setTitleSize(20)//标题文字大小
                 .setContentTextSize(20)//滚轮文字大小
@@ -224,7 +224,7 @@ public class PickerViewWrapper {
                 .isDialog(true)//是否显示为对话框样式
                 .isRestoreItem(true)//切换时是否还原，设置默认选中第一项。
                 .build();
-        sexOpv.setPicker(Arrays.asList("男", "女"));//添加数据源
+        sexOpv.setPicker(Arrays.asList(ctx.getString(R.string.text_male), ctx.getString(R.string.text_female)));//添加数据源
     }
 
 

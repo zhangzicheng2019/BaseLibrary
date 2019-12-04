@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Base Library</string>
 
-    <string name="text_get_again">Regain</string>
+    <string name="text_reacquire">Reacquire</string>
     <string name="text_yet_send_time">Sent%ds</string>
     <string name="text_scroll_to_load_failed">Load failed, click retry</string>
     <string name="text_no_more_results">No more results</string>
@@ -16,5 +16,16 @@
     <string name="text_user_agent">"%1$s Nestia-Agent/%2$s"</string>
     <string name="text_language">"en"</string>
 
+    <string name="text_hour">Hour</string>
+    <string name="text_minute">Minute</string>
+    <string name="text_second">Second</string>
+    <string name="text_female">Female</string>
+    <string name="text_male">Male</string>
+    <string name="text_confirm">OK</string>
+    <string name="text_cancel">Cancel</string>
+    <string name="text_select_region">Select region</string>
+    <string name="text_select_date">Select date</string>
+    <string name="text_select_gender">Select gender</string>
+    <string name="text_select_duration">Select duration</string>
 
 </resources>

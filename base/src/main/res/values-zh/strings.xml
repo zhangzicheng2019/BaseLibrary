@@ -3,7 +3,7 @@
 
     <string name="app_name">Base Library</string>
 
-    <string name="text_get_again">重新获取</string>
+    <string name="text_reacquire">重新获取</string>
     <string name="text_yet_send_time">已发送%ds</string>
     <string name="text_scroll_to_load_failed">加载失败，点击重试</string>
     <string name="text_no_more_results">无更多结果</string>
@@ -17,5 +17,18 @@
 
     <string name="text_user_agent">"%1$s Nestia-Agent/%2$s"</string>
     <string name="text_language">"ch"</string>
+
+    <string name="text_hour">小时</string>
+    <string name="text_minute">分钟</string>
+    <string name="text_second">秒</string>
+    <string name="text_female">女</string>
+    <string name="text_male">男</string>
+    <string name="text_confirm">确定</string>
+    <string name="text_cancel">取消</string>
+    <string name="text_select_region">选择地区</string>
+    <string name="text_select_date">选择日期</string>
+    <string name="text_select_gender">选择性别</string>
+    <string name="text_select_duration">选择时长</string>
+
 
 </resources>
