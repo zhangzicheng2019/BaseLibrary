@@ -56,6 +56,7 @@ public class FrameAnimation {
     };
 
     public void start(){
+        isStop = false;
         play();
     }
 
@@ -69,12 +70,7 @@ public class FrameAnimation {
         play();
     }
 
-    public void resume() {
-        isStop = false;
-        play();
-    }
-
-    public void pause() {
+    public void stop() {
         isStop = true;
     }
 
