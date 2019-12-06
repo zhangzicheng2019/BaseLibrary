@@ -3,7 +3,7 @@
 
     <string name="app_name">Base Library</string>
 
-    <string name="text_reacquire">重新获取</string>
+    <string name="text_resend">重新获取</string>
     <string name="text_yet_send_time">已发送%ds</string>
     <string name="text_scroll_to_load_failed">加载失败，点击重试</string>
     <string name="text_no_more_results">无更多结果</string>

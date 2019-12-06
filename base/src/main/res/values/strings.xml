@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Base Library</string>
 
-    <string name="text_reacquire">Reacquire</string>
+    <string name="text_resend">Resend</string>
     <string name="text_yet_send_time">Sent%ds</string>
     <string name="text_scroll_to_load_failed">Load failed, click retry</string>
     <string name="text_no_more_results">No more results</string>
