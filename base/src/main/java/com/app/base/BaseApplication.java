@@ -13,6 +13,7 @@ import androidx.multidex.MultiDex;
 
 import com.app.base.utils.LogUtils;
 import com.app.base.utils.UiUtils;
+import com.luck.picture.lib.config.PictureSelectionConfig;
 
 public class BaseApplication extends Application {
 
@@ -30,6 +31,7 @@ public class BaseApplication extends Application {
             AppCompatDelegate.setCompatVectorFromResourcesEnabled(true);
         }
         registerActLifecycle();
+        PictureSelectionConfig.getInstance().themeStyleId = R.style.BaseAppTheme;
     }
 
     public static BaseApplication getApplication(){

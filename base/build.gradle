@@ -59,8 +59,6 @@ dependencies {
 
     api 'io.reactivex.rxjava2:rxjava:2.2.11'
     api 'io.reactivex.rxjava2:rxandroid:2.1.1'
-    api 'top.zibin:Luban:1.1.8'//https://github.com/Curzibn/Luban
-    api 'com.github.LuckSiege.PictureSelector:picture_library:v2.2.4'//https://github.com/LuckSiege/PictureSelector
     api 'com.jakewharton.rxbinding3:rxbinding:3.0.0'
     api 'com.rxjava.rxlife:rxlife:1.0.9'
     api 'com.github.bumptech.glide:glide:4.10.0'
@@ -72,6 +70,6 @@ dependencies {
     implementation 'com.github.tbruyelle:rxpermissions:0.10.2'
     implementation 'org.greenrobot:eventbus:3.1.1'
     implementation 'com.contrarywind:Android-PickerView:4.1.8'
-
-
+    implementation 'com.github.LuckSiege.PictureSelector:picture_library:v2.2.4'//https://github.com/LuckSiege/PictureSelector
+    implementation 'top.zibin:Luban:1.1.8'//https://github.com/Curzibn/Luban
 }
