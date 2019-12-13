@@ -61,4 +61,9 @@
         <item name="android:windowExitAnimation">@anim/fade_out_short</item>
     </style>
 
+    <style name="AnimFadeInOutShort" parent="@android:style/Animation">
+        <item name="android:windowEnterAnimation">@anim/fade_in_short</item>
+        <item name="android:windowExitAnimation">@anim/fade_out_short</item>
+    </style>
+
 </resources>

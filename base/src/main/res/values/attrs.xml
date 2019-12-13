@@ -109,12 +109,12 @@
     </declare-styleable>
 
     <declare-styleable name="SubSamplingScaleImageView">
-        <attr name="src" format="reference"/>
-        <attr name="assetName" format="string"/>
-        <attr name="panEnabled" format="boolean"/>
-        <attr name="zoomEnabled" format="boolean"/>
-        <attr name="quickScaleEnabled" format="boolean"/>
-        <attr name="tileBackgroundColor" format="color"/>
+        <attr name="src" format="reference" />
+        <attr name="assetName" format="string" />
+        <attr name="panEnabled" format="boolean" />
+        <attr name="zoomEnabled" format="boolean" />
+        <attr name="quickScaleEnabled" format="boolean" />
+        <attr name="tileBackgroundColor" format="color" />
     </declare-styleable>
 
     <!-- AuthCodeInputView -->
@@ -134,12 +134,12 @@
     <declare-styleable name="TabMenuLayout">
 
         <attr name="space" format="dimension" />
-        <attr name="menuWidth" format="dimension" >
+        <attr name="menuWidth" format="dimension">
             <enum name="match_parent" value="-1" />
             <!-- The view should be only big enough to enclose its content (plus padding). -->
             <enum name="wrap_content" value="-2" />
         </attr>
-        <attr name="menuHeight" format="dimension" >
+        <attr name="menuHeight" format="dimension">
 
             <enum name="match_parent" value="-1" />
             <!-- The view should be only big enough to enclose its content (plus padding). -->
@@ -147,12 +147,21 @@
 
         </attr>
         <attr name="menuId" format="reference|integer" />
-        <attr name="model" format="integer" >
+        <attr name="model" format="integer">
 
             <enum name="fixed" value="1" />
             <enum name="scroll" value="2" />
 
         </attr>
+
+    </declare-styleable>
+
+    <declare-styleable name="GuidePopupWindow">
+
+        <attr name="guideTextColor" format="color" />
+        <attr name="backgroundResource" format="reference|integer" />
+        <attr name="arrowColor" format="color" />
+
 
     </declare-styleable>
 

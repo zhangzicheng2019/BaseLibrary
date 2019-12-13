@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/parent"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <ImageView
+        android:id="@+id/iv_top_arrow"
+        android:layout_width="16dp"
+        android:layout_height="9dp"
+        android:src="@drawable/ic_triangle_gray_top"
+        android:tint="@color/colorPrimary" />
+
+    <FrameLayout
+        android:id="@+id/fl_content"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_corners4_color_primary">
+
+        <TextView
+            android:id="@+id/tv_guide"
+            android:layout_width="wrap_content"
+            android:layout_height="51dp"
+            android:gravity="center_vertical"
+            android:paddingLeft="12dp"
+            android:paddingRight="12dp"
+            android:textColor="@color/white"
+            android:textSize="16dp"
+            tools:text="阿里觉得佛教的发动机服了肯定就分开来的" />
+    </FrameLayout>
+
+    <ImageView
+        android:id="@+id/iv_bottom_arrow"
+        android:layout_width="16dp"
+        android:layout_height="9dp"
+        android:rotation="180"
+        android:src="@drawable/ic_triangle_gray_top"
+        android:tint="@color/colorPrimary"
+        android:visibility="visible" />
+
+</LinearLayout>
