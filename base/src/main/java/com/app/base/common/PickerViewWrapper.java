@@ -9,12 +9,12 @@ import android.view.View;
 import androidx.core.content.ContextCompat;
 
 import com.app.base.R;
-import com.bigkoo.pickerview.builder.OptionsPickerBuilder;
-import com.bigkoo.pickerview.builder.TimePickerBuilder;
-import com.bigkoo.pickerview.listener.OnOptionsSelectListener;
-import com.bigkoo.pickerview.listener.OnTimeSelectListener;
-import com.bigkoo.pickerview.view.OptionsPickerView;
-import com.bigkoo.pickerview.view.TimePickerView;
+import com.app.base.ui.view.pickerview.builder.OptionsPickerBuilder;
+import com.app.base.ui.view.pickerview.builder.TimePickerBuilder;
+import com.app.base.ui.view.pickerview.listener.OnOptionsSelectListener;
+import com.app.base.ui.view.pickerview.listener.OnTimeSelectListener;
+import com.app.base.ui.view.pickerview.view.OptionsPickerView;
+import com.app.base.ui.view.pickerview.view.TimePickerView;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -32,8 +32,13 @@ public class PickerViewWrapper {
     private OptionsPickerView<String> durationOpv;
     private TimePickerView datePv;
 
-    public void showDateSelectDialog(Context ctx, OnDateSelectListener onDateSelectListener) {
+    private OnDateSelectListener onDateSelectListener;
+    private OnDurationSelectListener onDurationSelectListener;
+    private OnCitySelectListener onCitySelectListener;
+    private OnIndexSelectListener onIndexSelectListener;
 
+    public void showDateSelectDialog(Context ctx, OnDateSelectListener onDateSelectListener) {
+        this.onDateSelectListener = onDateSelectListener;
         if (datePv == null) {
             initDatePv(ctx, onDateSelectListener);
         }
@@ -44,6 +49,7 @@ public class PickerViewWrapper {
     }
 
     public void showDurationSelectDialog(Context ctx, OnDurationSelectListener onDurationSelectListener) {
+        this.onDurationSelectListener = onDurationSelectListener;
         if (durationOpv == null) {
             initDurationPv(ctx, onDurationSelectListener);
         }
@@ -55,6 +61,7 @@ public class PickerViewWrapper {
 
 
     public void showCitySelectDialog(Context ctx, OnCitySelectListener onCitySelectListener) {
+        this.onCitySelectListener = onCitySelectListener;
         if (mProvinceList.size() == 0) {
             String jsonData = getJson(ctx, "province.json");
             parseJson(jsonData);
@@ -70,6 +77,7 @@ public class PickerViewWrapper {
     }
 
     public void showSexSelectDialog(Context ctx, OnIndexSelectListener onIndexSelectListener) {
+        this.onIndexSelectListener = onIndexSelectListener;
         if (sexOpv == null) {
             initSexOpv(ctx, onIndexSelectListener);
         }
@@ -303,21 +311,30 @@ public class PickerViewWrapper {
     }
 
     public void release() {
-        if (cityOpv != null) {
+        if (sexOpv != null) {
+            if (sexOpv.isShowing()) {
+                sexOpv.dismiss();
+                sexOpv.recycle();
+            }
+            sexOpv = null;
+        }if (cityOpv != null) {
             if (cityOpv.isShowing()) {
                 cityOpv.dismiss();
+                cityOpv.recycle();
             }
             cityOpv = null;
         }
         if (durationOpv != null) {
             if (durationOpv.isShowing()) {
                 durationOpv.dismiss();
+                durationOpv.recycle();
             }
             durationOpv = null;
         }
         if (datePv != null) {
             if (datePv.isShowing()) {
                 datePv.dismiss();
+                datePv.recycle();
             }
             datePv = null;
         }
@@ -335,6 +352,10 @@ public class PickerViewWrapper {
         if (mDistricts != null) {
             mDistricts.clear();
         }
+        onDateSelectListener = null;
+        onCitySelectListener = null;
+        onDurationSelectListener = null;
+        onIndexSelectListener = null;
     }
 
     public interface OnDateSelectListener {
