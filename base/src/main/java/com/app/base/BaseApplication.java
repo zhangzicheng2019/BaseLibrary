@@ -14,14 +14,12 @@ import androidx.multidex.MultiDex;
 import com.app.base.utils.LogUtils;
 import com.app.base.utils.UiUtils;
 
-import java.lang.ref.WeakReference;
-
 public class BaseApplication extends Application {
 
     @SuppressLint("StaticFieldLeak")
     private static BaseApplication sApplication;
 
-    private WeakReference<Activity> mCurActivity = null;
+    private Activity mCurActivity = null;
 
     @Override
     public void onCreate() {
@@ -40,10 +38,10 @@ public class BaseApplication extends Application {
 
     @Nullable
     public Activity getTopActivity(){
-        if(mCurActivity.get() != null){
-            boolean isActRunning = UiUtils.isActRunning(mCurActivity.get());
+        if(mCurActivity != null){
+            boolean isActRunning = UiUtils.isActRunning(mCurActivity);
             LogUtils.d("getTopActivity() -> isActRunning=" + isActRunning);
-            return isActRunning ? mCurActivity.get() : null;
+            return isActRunning ? mCurActivity : null;
         }
         LogUtils.d("getTopActivity() -> null");
         return null;
@@ -64,7 +62,7 @@ public class BaseApplication extends Application {
 
             @Override
             public void onActivityResumed(@NonNull Activity activity) {
-                mCurActivity = new WeakReference<>(activity);
+                mCurActivity = activity;
             }
 
             @Override
