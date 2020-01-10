@@ -17,9 +17,9 @@ import com.app.base.utils.UiUtils;
 public class BaseApplication extends Application {
 
     @SuppressLint("StaticFieldLeak")
-    private static BaseApplication sApplication;
+    protected static BaseApplication sApplication;
 
-    private Activity mCurActivity = null;
+    protected Activity mCurActivity = null;
 
     @Override
     public void onCreate() {
