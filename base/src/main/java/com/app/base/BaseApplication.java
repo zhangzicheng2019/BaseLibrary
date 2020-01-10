@@ -17,9 +17,9 @@ import com.app.base.utils.UiUtils;
 public class BaseApplication extends Application {
 
     @SuppressLint("StaticFieldLeak")
-    protected static BaseApplication sApplication;
+    private static BaseApplication sApplication;
 
-    protected Activity mCurActivity = null;
+    private Activity mCurActivity = null;
 
     @Override
     public void onCreate() {
@@ -45,6 +45,10 @@ public class BaseApplication extends Application {
         }
         LogUtils.d("getTopActivity() -> null");
         return null;
+    }
+
+    public void recycleCurActivity(){
+        mCurActivity = null;
     }
 
     private void registerActLifecycle(){
