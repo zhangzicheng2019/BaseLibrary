@@ -44,7 +44,7 @@ public class AppUpdateHelper {
            installAPK();
            return;
        }
-        removeApkFile();
+       removeApkFile();
 
         //创建下载任务
         DownloadManager.Request request = new DownloadManager.Request(Uri.parse(apkUrl));
@@ -75,7 +75,7 @@ public class AppUpdateHelper {
             mDownloadReceiver = new BroadcastReceiver() {
                 @Override
                 public void onReceive(Context context, Intent intent) {
-                    checkStatus();
+                    checkDownloadStatus();
                 }
             };
             mContext.registerReceiver(mDownloadReceiver,
@@ -91,7 +91,7 @@ public class AppUpdateHelper {
     }
 
     //检查下载状态
-    private void checkStatus() {
+    private void checkDownloadStatus() {
         DownloadManager.Query query = new DownloadManager.Query();
         //通过下载的id查找
         query.setFilterById(mApkDownloadId);
@@ -147,7 +147,6 @@ public class AppUpdateHelper {
         }
         mContext.startActivity(intent);
     }
-
 
     public void removeApkFile(){
         if(mApkDownloadId != -1){
