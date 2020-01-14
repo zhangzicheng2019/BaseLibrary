@@ -22,13 +22,15 @@ public class AppUpdateHelper {
 
     private static final String TAG = AppUpdateHelper.class.getSimpleName();
 
+    private Context mContext;
+    private String mApkName;
     //下载器
     private DownloadManager mDownloadManager;
-    private Context mContext;
+    private BroadcastReceiver mDownloadReceiver;
     //下载的ID
     private long mApkDownloadId = -1;
-    private String mApkName;
-    private boolean downloadComplete = false;
+    private boolean isComplete = false;
+
 
     public AppUpdateHelper(Context context, String apkName) {
         this.mContext = context;
@@ -38,7 +40,7 @@ public class AppUpdateHelper {
     //下载apk
     public void download(String apkUrl) {
         //已经下载完成，直接安装
-       if(downloadComplete){
+       if(isComplete){
            installAPK();
            return;
        }
@@ -51,7 +53,7 @@ public class AppUpdateHelper {
         //在通知栏中显示，默认就是显示的
         request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
         request.setTitle(mContext.getString(R.string.app_name));
-        request.setDescription("新版本下载中...");
+        request.setDescription(mContext.getString(R.string.text_new_version_download));
         request.setVisibleInDownloadsUi(true);
         //设置下载路径
         request.setDestinationInExternalPublicDir(Environment.DIRECTORY_DOWNLOADS, mApkName);
@@ -68,22 +70,23 @@ public class AppUpdateHelper {
 
         LogUtils.i(TAG, "mApkDownloadId=" + mApkDownloadId + ", request=" + request.toString());
 
-        //注册广播接收者，监听下载状态
-        mReceiver = new BroadcastReceiver() {
-            @Override
-            public void onReceive(Context context, Intent intent) {
-                checkStatus();
-            }
-        };
-        mContext.registerReceiver(mReceiver,
-                new IntentFilter(DownloadManager.ACTION_DOWNLOAD_COMPLETE));
+        if(mDownloadReceiver == null){
+            //注册广播接收者，监听下载状态
+            mDownloadReceiver = new BroadcastReceiver() {
+                @Override
+                public void onReceive(Context context, Intent intent) {
+                    checkStatus();
+                }
+            };
+            mContext.registerReceiver(mDownloadReceiver,
+                    new IntentFilter(DownloadManager.ACTION_DOWNLOAD_COMPLETE));
+        }
     }
 
-    private BroadcastReceiver mReceiver;
     private void unregisterReceiver() {
-        if (mReceiver != null && mContext != null) {
-            mContext.unregisterReceiver(mReceiver);
-            mReceiver = null;
+        if (mDownloadReceiver != null && mContext != null) {
+            mContext.unregisterReceiver(mDownloadReceiver);
+            mDownloadReceiver = null;
         }
     }
 
@@ -109,7 +112,7 @@ public class AppUpdateHelper {
                 //下载完成
                 case DownloadManager.STATUS_SUCCESSFUL:
                     //下载完成安装APK
-                    downloadComplete = true;
+                    isComplete = true;
                     installAPK();
                     cursor.close();
                     unregisterReceiver();

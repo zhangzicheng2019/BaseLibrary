@@ -6,12 +6,12 @@
     <string name="text_scroll_to_load_failed">Load failed, click retry</string>
     <string name="text_no_more_results">No more results</string>
     <string name="text_click_to_load_more">Click load more</string>
+    <string name="text_new_version_download">New version Downloading…</string>
 
     <string name="text_time_minutes_ago">%d minutes ago</string>
     <string name="text_time_hours_ago">%1$d hours ago</string>
 
     <string name="text_unselected_picture">Unselected picture !</string>
-
 
     <string name="text_user_agent">"%1$s Nestia-Agent/%2$s"</string>
     <string name="text_language">"en"</string>

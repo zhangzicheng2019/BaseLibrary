@@ -8,12 +8,12 @@
     <string name="text_scroll_to_load_failed">加载失败，点击重试</string>
     <string name="text_no_more_results">无更多结果</string>
     <string name="text_click_to_load_more">点击加载更多</string>
+    <string name="text_new_version_download">新版本下载中…</string>
 
     <string name="text_time_minutes_ago">%d 分钟以前</string>
     <string name="text_time_hours_ago">%1$d 小时以前</string>
 
     <string name="text_unselected_picture">Unselected picture !</string>
-
 
     <string name="text_user_agent">"%1$s Nestia-Agent/%2$s"</string>
     <string name="text_language">"ch"</string>
