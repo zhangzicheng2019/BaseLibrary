@@ -7,25 +7,26 @@ import android.view.Window;
 
 import com.app.base.utils.LogUtils;
 
-public final class DialogClickListener implements DialogInterface.OnClickListener {
+public class DialogShowListener implements DialogInterface.OnShowListener {
 
-    public static DialogClickListener wrap(DialogInterface.OnClickListener onClickListener) {
-        return new DialogClickListener(onClickListener);
+    public static DialogShowListener wrap(DialogInterface.OnShowListener onShowListener) {
+        return new DialogShowListener(onShowListener);
     }
 
-    private DialogInterface.OnClickListener onClickListener;
+    private DialogInterface.OnShowListener onShowListener;
 
-    private DialogClickListener(DialogInterface.OnClickListener onClickListener) {
-        this.onClickListener = onClickListener;
+    private DialogShowListener(DialogInterface.OnShowListener onShowListener) {
+        this.onShowListener = onShowListener;
     }
 
-    @Override public void onClick(DialogInterface dialog, int which) {
-        if (onClickListener != null) {
-            onClickListener.onClick(dialog, which);
+    @Override
+    public void onShow(DialogInterface dialog) {
+        if (onShowListener != null) {
+            onShowListener.onShow(dialog);
         }
     }
 
-    public DialogClickListener recycleOnDetach(Dialog dialog) {
+    public DialogShowListener recycleOnDetach(Dialog dialog) {
         Window window = dialog.getWindow();
         if(window != null){
             window.getDecorView()
@@ -33,9 +34,9 @@ public final class DialogClickListener implements DialogInterface.OnClickListene
                     .addOnWindowAttachListener(new ViewTreeObserver.OnWindowAttachListener() {
                         @Override public void onWindowAttached() { }
                         @Override public void onWindowDetached() {
-                            onClickListener = null;
+                            onShowListener = null;
                             window.getDecorView().getViewTreeObserver().removeOnWindowAttachListener(this);
-                            LogUtils.d("DialogClickListener --> onWindowDetached");
+                            LogUtils.d("DialogShowListener --> onWindowDetached");
                         }
                     });
         }
