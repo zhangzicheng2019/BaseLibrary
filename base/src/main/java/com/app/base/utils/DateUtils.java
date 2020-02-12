@@ -101,6 +101,17 @@ public class DateUtils {
         return duration.toString();
     }
 
+    public static String formatTimestamp(Date date){
+        return mSimpleDateFormat.format(date);
+    }
+
+    public static String formatTimestamp(Long date){
+        if(date == null){
+            return "";
+        }
+        return mSimpleDateFormat.format(new Date(date));
+    }
+
     public static String formatToYMD(Date date){
         return mSdfYMD.format(date);
     }

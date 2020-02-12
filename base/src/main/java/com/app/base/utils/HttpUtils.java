@@ -6,7 +6,6 @@ import android.net.NetworkInfo;
 import android.net.Uri;
 import android.text.TextUtils;
 import com.app.base.BaseApplication;
-import com.app.base.BuildConfig;
 import com.app.base.net.http.UpFile;
 import io.reactivex.annotations.NonNull;
 import okhttp3.*;
