@@ -31,11 +31,23 @@ public class PickerViewWrapper {
     private OptionsPickerView<String> sexOpv;
     private OptionsPickerView<String> durationOpv;
     private TimePickerView datePv;
+    private TimePickerView timePv;
 
     private OnDateSelectListener onDateSelectListener;
     private OnDurationSelectListener onDurationSelectListener;
     private OnCitySelectListener onCitySelectListener;
     private OnIndexSelectListener onIndexSelectListener;
+
+    public void showTimeSelectDialog(Context ctx, OnDateSelectListener onDateSelectListener) {
+        this.onDateSelectListener = onDateSelectListener;
+        if (timePv == null) {
+            initTimePv(ctx, onDateSelectListener);
+        }
+        if (timePv.isShowing()) {
+            timePv.dismiss();
+        }
+        timePv.show(false);
+    }
 
     public void showDateSelectDialog(Context ctx, OnDateSelectListener onDateSelectListener) {
         this.onDateSelectListener = onDateSelectListener;
@@ -133,6 +145,39 @@ public class PickerViewWrapper {
                 .isRestoreItem(true)//切换时是否还原，设置默认选中第一项。
                 .build();
         cityOpv.setPicker(mProvinceList, mCityList, mDistrictList);//添加数据源
+    }
+
+    private void initTimePv(Context ctx, final OnDateSelectListener onDateSelectListener) {
+        Calendar selectedDate = Calendar.getInstance();
+        Calendar startDate = Calendar.getInstance();
+        startDate.set(1900, 0, 1);
+        Calendar endDate = Calendar.getInstance();
+        timePv = new TimePickerBuilder(ctx, new OnTimeSelectListener() {
+            @Override
+            public void onTimeSelect(Date date, View v) {//选中事件回调
+                onDateSelectListener.onDateSelect(date, v);
+            }
+        })
+                .setType(new boolean[]{false, false, false, true, true, true})// 默认全部显示
+                .setTitleText(ctx.getString(R.string.text_select_date))//标题文字
+                .setCancelText(ctx.getString(R.string.text_cancel))//取消按钮文字
+                .setSubmitText(ctx.getString(R.string.text_confirm))//确认按钮文字
+                .setSubCalSize(18)//确定和取消文字大小
+                .setTitleSize(20)//标题文字大小
+                .setContentTextSize(20)//滚轮文字大小
+                .setOutSideCancelable(true)//点击屏幕，点在控件外部范围时，是否取消显示
+                .isCyclic(true)//是否循环滚动
+                .setTitleColor(Color.BLACK)//标题文字颜色
+                .setSubmitColor(Color.parseColor("#357af6"))//确定按钮文字颜色
+                .setCancelColor(Color.parseColor("#357af6"))//取消按钮文字颜色
+                .setTitleBgColor(ContextCompat.getColor(ctx, R.color.gray_background))//标题背景颜色 Night mode
+                .setBgColor(Color.WHITE)//滚轮背景颜色 Night mode
+                .setDate(selectedDate)// 如果不设置的话，默认是系统时间*/
+                .setRangDate(startDate, endDate)//起始终止年月日设定
+//                .setLabel("年","月","日","时","分","秒")//默认设置为年月日时分秒
+                .isCenterLabel(false) //是否只显示中间选中项的label文字，false则每项item全部都带有label。
+                .isDialog(true)//是否显示为对话框样式
+                .build();
     }
 
     private void initDatePv(Context ctx, final OnDateSelectListener onDateSelectListener) {
@@ -330,6 +375,13 @@ public class PickerViewWrapper {
                 durationOpv.recycle();
             }
             durationOpv = null;
+        }
+        if (timePv != null) {
+            if (timePv.isShowing()) {
+                timePv.dismiss();
+                timePv.recycle();
+            }
+            timePv = null;
         }
         if (datePv != null) {
             if (datePv.isShowing()) {
