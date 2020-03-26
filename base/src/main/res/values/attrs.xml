@@ -7,8 +7,9 @@
         <attr name="tintColor" format="color" />
         <attr name="titleColor" format="color" />
         <attr name="titleSize" format="dimension" />
-        <attr name="showLine" format="boolean" />
+        <attr name="showShadowLine" format="boolean" />
         <attr name="showNavIcon" format="boolean" />
+        <attr name="navIconPadding" format="dimension" />
     </declare-styleable>
 
     <declare-styleable name="TabMenuItemView">

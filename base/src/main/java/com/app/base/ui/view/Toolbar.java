@@ -79,10 +79,11 @@ public class Toolbar extends FrameLayout {
             String title = a.getString(R.styleable.Toolbar_titleText);
             ColorStateList tintColorList = a.getColorStateList(R.styleable.Toolbar_tintColor);
             int icon  = a.getResourceId(R.styleable.Toolbar_navIcon, -1);
+            int navIconPadding  = a.getDimensionPixelSize(R.styleable.Toolbar_navIconPadding, -1);
             int titleColor  = a.getColor(R.styleable.Toolbar_titleColor, -1);
             float titleSize  = a.getDimension(R.styleable.Toolbar_titleSize, -1);
             boolean showNavIcon  = a.getBoolean(R.styleable.Toolbar_showNavIcon, true);
-            boolean showLine  = a.getBoolean(R.styleable.Toolbar_showLine, false);
+            boolean showShadowLine  = a.getBoolean(R.styleable.Toolbar_showShadowLine, false);
             if(showNavIcon){
                 if(icon != -1){
                     ivNav.setImageResource(icon);
@@ -90,6 +91,9 @@ public class Toolbar extends FrameLayout {
                 ivNav.setVisibility(View.VISIBLE);
             } else {
                 ivNav.setVisibility(View.GONE);
+            }
+            if(navIconPadding > 0){
+                ivNav.setPadding(navIconPadding, 0, navIconPadding, 0);
             }
 
             tvTitle.setText(title);
@@ -105,7 +109,7 @@ public class Toolbar extends FrameLayout {
                 tvTitle.setTextSize(TypedValue.COMPLEX_UNIT_PX, titleSize);
             }
 
-            if(showLine){
+            if(showShadowLine){
                 if (Build.VERSION.SDK_INT >= 21){
                     setElevation(UiUtils.dpToPx(context, 1f));
                 } else {
