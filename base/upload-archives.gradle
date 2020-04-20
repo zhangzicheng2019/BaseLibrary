@@ -2,7 +2,7 @@ apply plugin: 'maven'
 uploadArchives{
     repositories.mavenDeployer{
         // 本地仓库路径
-        repository(url:"file://E://repository/")
+        repository(url: "${project.LOCAL_REPOSITORY_URL}")
         // 唯一标识
         pom.groupId = "${project.POM_GRAOUP_ID}"
         // 项目名称
